@@ -34,4 +34,24 @@
             </div>
         </div>
         <!-- /HEADER -->
-        
+        <!-- Menu Bar -->
+        <div id="admin-menubar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                       <ul class="admin-menu">
+                            <li>
+                                <a href="post.php">Post</a>
+                            </li>
+                            <li>
+                                <a href="category.php">Category</a>
+                            </li>
+                            <li>
+                                <a href="users.php">Users</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Menu Bar -->
