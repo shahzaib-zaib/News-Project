@@ -2,6 +2,13 @@
 
     if(isset($_POST['save'])){
         include "config.php";
+
+        $fname = mysqli_real_escape_string($con,$_POST['fname']);
+        $lname = mysqli_real_escape_string($con,$_POST['lname']);
+        $user = mysqli_real_escape_string($con,$_POST['user']);
+        $password = mysqli_real_escape_string($con,md5($_POST['password']));
+        $role = mysqli_real_escape_string($con,$_POST['role']);
+
     }
 
 ?>
