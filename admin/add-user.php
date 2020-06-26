@@ -9,16 +9,16 @@
         $password = mysqli_real_escape_string($con,md5($_POST['password']));
         $role = mysqli_real_escape_string($con,$_POST['role']);
 
-    $sql = "SELECT username FROM user WHERE username = {$user}";
+    $sql = "SELECT username FROM user WHERE username = '{$user}'";
     $result = mysqli_query($con,$sql) or die("Query Failed");
 
     if(mysqli_num_rows($result) > 0){
         echo "<p style='color:red;text-align:center;margin: 10px 0;'>Username already Exists</p>";
     }else{
-        $sql1 = "INSERT into user (first_name,last_name,username,password,role)
-        VALUES('{$fname}','{$lname}','{$user}','{$password}','{$role}',)";
+        $sql1 = "INSERT INTO user (first_name, last_name, username, password, role)
+        VALUES('{$fname}','{$lname}','{$user}','{$password}','{$role}')";
 
-    if(msqli_query($con,$sql1)){
+    if(mysqli_query($con,$sql1)){
         header("location:users.php");
     }
     }
