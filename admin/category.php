@@ -9,6 +9,15 @@
                 <a class="add-new" href="add-category.php">add category</a>
             </div>
             <div class="col-md-12">
+                <?php
+
+                    include "config.php";
+
+                    $sql = "SELECT * FROM cateogory ORDER BY cateogory_id DESC";
+                    $result = mysqli_query($con, $sql) or die ("Query Faild.");
+                    
+
+                ?>
                 <table class="content-table">
                     <thead>
                         <th>S.No.</th>
