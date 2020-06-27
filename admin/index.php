@@ -56,7 +56,7 @@
                                     $_SESSION["user_id"] = $row['user_id'];
                                     $_SESSION["user_role"] = $row['role'];
 
-                                    header("location:post.php");
+                                    header("Location: {$hostname}/admin/post.php");
 
                                 }
                             }else{
