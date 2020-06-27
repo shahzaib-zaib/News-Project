@@ -37,6 +37,13 @@
                                 $password = md5($_POST['']);
 
                             $sql = "SELECT user_id, username, role FROM user WHERE username = {$username} AND password = {$password}";
+                            $result = mysqli_query($con, $sql) or die("Query Failed");
+
+                            if(mysqli_num_rows($result) > 0){
+
+                            }else{
+                                echo '<div class="alert-dander">Username and Password are not match</div>';
+                            }
                             }
                         ?>
                     </div>
