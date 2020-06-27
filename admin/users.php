@@ -90,8 +90,6 @@
                     }
                   ?>
                   
-                      <!-- <li class="active"><a>1</a></li> -->
-                  
               </div>
           </div>
       </div>

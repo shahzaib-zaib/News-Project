@@ -13,7 +13,17 @@
 
                     include "config.php";
 
-                    $sql = "SELECT * FROM category ORDER BY category_id DESC";
+                    $limit = 3;
+
+                    
+                    if(isset($_GET['page'])){
+                        $page = $_GET['page'];
+                    }else{
+                        $page = 1;
+                    }
+                    $offset = ($page - 1) * $limit;
+
+                    $sql = "SELECT * FROM category ORDER BY category_id DESC LIMIT {$offset}, {$limit}";
                     $result = mysqli_query($con, $sql) or die ("Query Faild.");
 
                     if(mysqli_num_rows($result) > 0){
@@ -49,12 +59,37 @@
 
                     }
 
+                    
+                    $sql1 = "SELECT * FROM category";
+                    $result1 = mysqli_query($con, $sql1) or die ("Query Failed");
+
+                    if(mysqli_num_rows($result1) > 0){
+                        $total_record = mysqli_num_rows($result1);
+                        
+                        $total_pages = ceil($total_record / $limit);
+
+                        echo "<ul class='pagination admin-pagination'>";
+                        if($page > 1){
+                            echo '<li><a href="category.php?page='.($page - 1).'">Prev</a></li>';
+                        }
+                        
+                        for($i = 1; $i <= $total_pages; $i++){
+                            if ($i == $page) {
+                                $active = "active";
+                            } else {
+                                $active = "";
+                            }
+                            
+                            echo '<li class="'.$active.'"><a href="category.php?page='. $i .'">'. $i .'</a></li>';
+                        }
+                        if($total_pages > $page){
+                            echo '<li><a href="category.php?page='.($page + 1).'">Next</a></li>';
+                        }
+                        
+                        echo "</ul>";
+                    }
+
                 ?>
-                <ul class='pagination admin-pagination'>
-                    <li class="active"><a>1</a></li>
-                    <li><a>2</a></li>
-                    <li><a>3</a></li>
-                </ul>
             </div>
         </div>
     </div>

@@ -39,7 +39,7 @@ if(isset($_POST['submit'])){
                           <label>Category Name</label>
                           <input type="text" name="cat_name" class="form-control" value="<?php echo $row['category_name']; ?>"  placeholder="" required>
                       </div>
-                      <input type="submit" name="sumbit" class="btn btn-primary" value="Update" required />
+                      <input type="submit" name="submit" class="btn btn-primary" value="Update" required />
                   </form>
                   <?php
                         }
