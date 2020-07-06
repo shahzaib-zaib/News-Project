@@ -21,13 +21,13 @@
                           <select name="category" class="form-control">
                               <option disable> Select Category</option>
                               <?php
-                                    include 'config.php';
+                                    include "config.php";
                                     $sql = "SELECT * FROM category";
                                     $result = mysqli_query($con,$sql) or die("Query Failed");
 
                                     if(mysqli_num_rows($result) > 0){
                                         while($row = mysqli_fetch_assoc($result)){
-                                            echo "<option>{$row['category_name']}</option>";
+                                            echo "<option  value='{$row['category_id']}'>{$row['category_name']}</option>";
                                         }
                                     }
                             ?>
