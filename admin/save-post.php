@@ -36,7 +36,13 @@
 
 
     $sql = "INSERT INTO post(title, description, category,post_date, author, post_imp)
-            VALUES('{$title}', '{$description}', {$category}, '{$date}', {$author}, '{$file_name}')"
+            VALUES('{$title}', '{$description}', {$category}, '{$date}', {$author}, '{$file_name}')";
 
+    $sql .= "UPDATE category SET post = post + 1 WHERE category_id = {$category}";
 
+    if(mysqli_multi_query($con, $sql)){
+        header("Location: {$hostname}/admin/post.php");
+    }else{
+        echo "<div class='alert alert-danger'>Query Failed</div>";
+    }
 ?>
