@@ -19,7 +19,7 @@
                     }
                     $offset = ($page - 1) * $limit;
 
-                    $sql = "SELECT * FROM user ORDER BY user_id DESC LIMIT {$offset}, {$limit}";
+                    $sql = "SELECT * FROM post DESC LIMIT {$offset}, {$limit}";
                     $result = mysqli_query($con, $sql) or die ("Query Faild.");
                     if(mysqli_num_rows($result) > 0){
 
@@ -36,17 +36,17 @@
                           <th>Delete</th>
                       </thead>
                       <tbody>
-                      <?php while($row = mysqli_fetch_assoc($result)) { ?>
-                          <tr>
-                              <td class='id'>1</td>
-                              <td>Lorem ipsum dolor sit amet</td>
-                              <td>Html</td>
-                              <td>01 Nov, 2019</td>
-                              <td>Admin</td>
-                              <td class='edit'><a href='update-post.php'><i class='fa fa-edit'></i></a></td>
-                              <td class='delete'><a href='delete-post.php'><i class='fa fa-trash-o'></i></a></td>
-                          </tr>
-                          <?php } ?>
+                        <?php while($row = mysqli_fetch_assoc($result)) { ?>
+                            <tr>
+                                <td class='id'><?php echo $row['post_id']; ?></td>
+                                <td><?php echo $row['title']; ?></td>
+                                <td><?php echo $row['category_name']; ?></td>
+                                <td><?php echo $row['post_date']; ?></td>
+                                <td><?php echo $row['username']; ?></td>
+                                <td class='edit'><a href='update-post.php?id=<?php echo $row['post_id']; ?>'><i class='fa fa-edit'></i></a></td>
+                                <td class='delete'><a href='delete-post.php?id=<?php echo $row['post_id']; ?>'><i class='fa fa-trash-o'></i></a></td>
+                            </tr>
+                        <?php } ?>
                       </tbody>
                   </table>
                   <?php
