@@ -19,7 +19,10 @@
                     }
                     $offset = ($page - 1) * $limit;
 
-                    $sql = "SELECT * FROM post DESC LIMIT {$offset}, {$limit}";
+                    $sql = "SELECT * FROM post 
+                    LEFT JOIN category ON post.category = category.category_id
+                    LEFT JOIN user ON post.author = user.user_id
+                    ORDER BY post.post_id DESC LIMIT {$offset}, {$limit}";
                     $result = mysqli_query($con, $sql) or die ("Query Faild.");
                     if(mysqli_num_rows($result) > 0){
 
@@ -52,7 +55,7 @@
                   <?php
                     }
 
-                    $sql1 = "SELECT * FROM user";
+                    $sql1 = "SELECT * FROM post";
                     $result1 = mysqli_query($con, $sql1) or die ("Query Failed");
 
                     if(mysqli_num_rows($result1) > 0){
