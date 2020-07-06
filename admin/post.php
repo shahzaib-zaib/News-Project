@@ -19,7 +19,8 @@
                     }
                     $offset = ($page - 1) * $limit;
 
-                    $sql = "SELECT * FROM post 
+                    $sql = "SELECT post.post_id, post.title, post.description, post.post_date,
+                    category.category_name, user.username FROM post 
                     LEFT JOIN category ON post.category = category.category_id
                     LEFT JOIN user ON post.author = user.user_id
                     ORDER BY post.post_id DESC LIMIT {$offset}, {$limit}";
