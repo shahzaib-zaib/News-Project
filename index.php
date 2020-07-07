@@ -24,6 +24,9 @@
                             LEFT JOIN user ON post.author = user.user_id
                             ORDER BY post.post_id DESC LIMIT {$offset}, {$limit}";
 
+                            $result = mysqli_query($con, $sql) or die ("Query Faild.");
+                            if(mysqli_num_rows($result) > 0){
+                                while($row = mysqli_fetch_assoc($result)) {
                         ?>
                         <div class="post-content">
                             <div class="row">
@@ -55,6 +58,13 @@
                                 </div>
                             </div>
                         </div>
+                        <?php
+                                }
+                            }else{
+                                echo "<h2>No Record Found</h2>"
+                            }
+
+                        ?>
                         <ul class='pagination'>
                             <li class="active"><a href="">1</a></li>
                             <li><a href="">2</a></li>
