@@ -68,8 +68,11 @@
                       </tbody>
                   </table>
                   <?php
+                    }else{
+                        echo "<h3>No Results Found.</h3>"
                     }
 
+                    // Show pagination
                     $sql1 = "SELECT * FROM post";
                     $result1 = mysqli_query($con, $sql1) or die ("Query Failed");
 

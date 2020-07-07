@@ -61,15 +61,49 @@
                         <?php
                                 }
                             }else{
-                                echo "<h2>No Record Found</h2>"
+                                echo "<h2>No Record Found.</h2>";
                             }
 
                         ?>
-                        <ul class='pagination'>
+                        
+                        <?php
+
+                            // Show pagination
+                            $sql1 = "SELECT * FROM post";
+                            $result1 = mysqli_query($con, $sql1) or die ("Query Failed");
+
+                            if(mysqli_num_rows($result1) > 0){
+                                $total_record = mysqli_num_rows($result1);
+                                
+                                $total_pages = ceil($total_record / $limit);
+
+                                echo "<ul class='pagination admin-pagination'>";
+                                if($page > 1){
+                                    echo '<li><a href="post.php?page='.($page - 1).'">Prev</a></li>';
+                                }
+                                
+                                for($i = 1; $i <= $total_pages; $i++){
+                                    if ($i == $page) {
+                                        $active = "active";
+                                    } else {
+                                        $active = "";
+                                    }
+                                    
+                                    echo '<li class="'.$active.'"><a href="post.php?page='. $i .'">'. $i .'</a></li>';
+                                }
+                                if($total_pages > $page){
+                                    echo '<li><a href="post.php?page='.($page + 1).'">Next</a></li>';
+                                }
+                                
+                                echo "</ul>";
+                            }
+
+                        ?>
+                        <!-- <ul class='pagination'>
                             <li class="active"><a href="">1</a></li>
                             <li><a href="">2</a></li>
                             <li><a href="">3</a></li>
-                        </ul>
+                        </ul> -->
                     </div><!-- /post-container -->
                 </div>
                 <?php include 'sidebar.php'; ?>
