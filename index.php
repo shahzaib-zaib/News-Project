@@ -50,7 +50,7 @@
                                                 <?php echo $row['post_date']; ?>
                                             </span>
                                         </div>
-                                        <p class="description"><?php echo $row['description']; ?></p>
+                                        <p class="description"><?php echo substr($row['description'],0,130) . "..."; ?></p>
                                         <a class='read-more pull-right' href='single.php?id=<?php echo $row['post_id'];?>'>read more</a>
                                     </div>
                                 </div>
