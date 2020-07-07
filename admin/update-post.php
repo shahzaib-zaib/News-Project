@@ -48,13 +48,13 @@ if($_SESSION["user_role"] == '0'){
                     <option disable> Select Category</option>
                     <?php
                         include "config.php";
-                        $sql = "SELECT * FROM category";
-                        $result = mysqli_query($con,$sql) or die("Query Failed");
+                        $sql1 = "SELECT * FROM category";
+                        $result1 = mysqli_query($con,$sql1) or die("Query Failed");
 
-                        if(mysqli_num_rows($result) > 0){
-                            while($row = mysqli_fetch_assoc($result)){
-                                
-                                echo "<option  value='{$row['category_id']}'>{$row['category_name']}</option>";
+                        if(mysqli_num_rows($result1) > 0){
+                            while($row1 = mysqli_fetch_assoc($result1)){
+
+                                echo "<option  value='{$row1['category_id']}'>{$row1['category_name']}</option>";
                             }
                         }
                 ?>
@@ -63,7 +63,7 @@ if($_SESSION["user_role"] == '0'){
             <div class="form-group">
                 <label for="">Post image</label>
                 <input type="file" name="new-image">
-                <img  src="upload/<?php echo $row['post_img'] ?>" height="150px">
+                <img  src="upload/<?php echo $row['post_img']; ?>" height="150px">
                 <!-- <input type="hidden" name="old-image" value=""> -->
             </div>
             <input type="submit" name="submit" class="btn btn-primary" value="Update" />
