@@ -7,7 +7,22 @@
                     <div class="post-container">
                         <?php
 
-                            
+                            include "config.php";
+
+                            /* Calculation Offset Code */
+                            $limit = 3;
+                            if(isset($_GET['page'])){
+                                $page = $_GET['page'];
+                            }else{
+                                $page = 1;
+                            }
+                            $offset = ($page - 1) * $limit;
+
+                            $sql = "SELECT post.post_id, post.title, post.description, post.post_date,
+                            category.category_name, user.username,post.category FROM post 
+                            LEFT JOIN category ON post.category = category.category_id
+                            LEFT JOIN user ON post.author = user.user_id
+                            ORDER BY post.post_id DESC LIMIT {$offset}, {$limit}";
 
                         ?>
                         <div class="post-content">

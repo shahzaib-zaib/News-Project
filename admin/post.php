@@ -10,7 +10,9 @@
               </div>
               <div class="col-md-12">
               <?php
-                    include "config.php"; 
+                    include "config.php";
+
+                    /* Calculation Offset Code */
                     $limit = 3;
                     if(isset($_GET['page'])){
                         $page = $_GET['page'];
