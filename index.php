@@ -19,7 +19,7 @@
                             $offset = ($page - 1) * $limit;
 
                             $sql = "SELECT post.post_id, post.title, post.description, post.post_date,
-                            category.category_name, user.username,post.category FROM post 
+                            category.category_name, user.username,post.category,post.post_img FROM post 
                             LEFT JOIN category ON post.category = category.category_id
                             LEFT JOIN user ON post.author = user.user_id
                             ORDER BY post.post_id DESC LIMIT {$offset}, {$limit}";
@@ -31,28 +31,26 @@
                         <div class="post-content">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <a class="post-img" href="single.php"><img src="images/post-format.jpg" alt=""/></a>
+                                    <a class="post-img" href="single.php"><img src="admin/upload/<?php echo $row['post_img']; ?>" alt=""/></a>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="inner-content clearfix">
-                                        <h3><a href='single.php'>Lorem ipsum dolor sit amet, consectetur adipiscing elit</a></h3>
+                                        <h3><a href='single.php'><?php echo $row['title']; ?></a></h3>
                                         <div class="post-information">
                                             <span>
                                                 <i class="fa fa-tags" aria-hidden="true"></i>
-                                                <a href='category.php'>PHP</a>
+                                                <a href='category.php'><?php echo $row['category_name']; ?></a>
                                             </span>
                                             <span>
                                                 <i class="fa fa-user" aria-hidden="true"></i>
-                                                <a href='author.php'>Admin</a>
+                                                <a href='author.php'><?php echo $row['username']; ?></a>
                                             </span>
                                             <span>
                                                 <i class="fa fa-calendar" aria-hidden="true"></i>
-                                                01 Nov, 2019
+                                                <?php echo $row['post_date']; ?>
                                             </span>
                                         </div>
-                                        <p class="description">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua....
-                                        </p>
+                                        <p class="description"><?php echo $row['description']; ?></p>
                                         <a class='read-more pull-right' href='single.php'>read more</a>
                                     </div>
                                 </div>
@@ -79,7 +77,7 @@
 
                                 echo "<ul class='pagination admin-pagination'>";
                                 if($page > 1){
-                                    echo '<li><a href="post.php?page='.($page - 1).'">Prev</a></li>';
+                                    echo '<li><a href="index.php?page='.($page - 1).'">Prev</a></li>';
                                 }
                                 
                                 for($i = 1; $i <= $total_pages; $i++){
@@ -89,10 +87,10 @@
                                         $active = "";
                                     }
                                     
-                                    echo '<li class="'.$active.'"><a href="post.php?page='. $i .'">'. $i .'</a></li>';
+                                    echo '<li class="'.$active.'"><a href="index.php?page='. $i .'">'. $i .'</a></li>';
                                 }
                                 if($total_pages > $page){
-                                    echo '<li><a href="post.php?page='.($page + 1).'">Next</a></li>';
+                                    echo '<li><a href="index.php?page='.($page + 1).'">Next</a></li>';
                                 }
                                 
                                 echo "</ul>";
