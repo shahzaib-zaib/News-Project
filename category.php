@@ -75,9 +75,7 @@
                     // Show pagination
                     $sql1 = "SELECT post FROM category WHERE category_id = {$cat_id}";
                     $result1 = mysqli_query($con, $sql1) or die ("Query Failed");
-                    $row = mysqli_fetch_assoc($result);
-
-
+                    $row = mysqli_fetch_assoc($result1);
 
                     if(mysqli_num_rows($result1) > 0){
 
@@ -87,7 +85,7 @@
 
                         echo "<ul class='pagination admin-pagination'>";
                         if($page > 1){
-                            echo '<li><a href="index.php?cid=' . $cat_id . '&page='.($page - 1).'">Prev</a></li>';
+                            echo '<li><a href="index.php?cid='.$cat_id.'&page='.($page - 1).'">Prev</a></li>';
                         }
                         
                         for($i = 1; $i <= $total_pages; $i++){
@@ -97,10 +95,10 @@
                                 $active = "";
                             }
                             
-                            echo '<li class="'.$active.'"><a href="index.php?cid=' . $cat_id . '&page='. $i .'">'. $i .'</a></li>';
+                            echo '<li class="'.$active.'"><a href="index.php?cid='.$cat_id.'&page='. $i .'">'. $i .'</a></li>';
                         }
                         if($total_pages > $page){
-                            echo '<li><a href="index.php?cid=' . $cat_id . '&page='.($page + 1).'">Next</a></li>';
+                            echo '<li><a href="index.php?cid='.$cat_id.'&page='.($page + 1).'">Next</a></li>';
                         }
                         
                         echo "</ul>";
