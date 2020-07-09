@@ -38,21 +38,26 @@
 
                 include "config.php";
 
-                $cat_id = $_GET['cid'];
+                if(isset($_GET['cid'])){
+                    $cat_id = $_GET['cid'];
+                }
 
                 $sql = "SELECT * FROM category WHERE post > 0 ";
                 $result = mysqli_query($con, $sql) or die ("Query Faild. : Category");
                     if(mysqli_num_rows($result) > 0){
+                        $active = "";
                 ?>
 
                 <ul class='menu'>
                     <?php while($row = mysqli_fetch_assoc($result)) {
-                        if($row['category_id'] == $cat_id) {
-                            $active = "active";
-                        } else {
-                            $active = "";
+                        if(isset($_GET['cid'])){
+                            if($row['category_id'] == $cat_id) {
+                                $active = "active";
+                            } else {
+                                $active = "";
+                            }
                         }
-
+                        
                         echo "<li><a class='{$active}' href='category.php?cid={$row['category_id']}'>{$row['category_name']}</a></li>";
                      } ?>
                 </ul>
