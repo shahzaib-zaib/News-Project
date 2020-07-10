@@ -5,21 +5,16 @@
             <div class="col-md-8">
                 <!-- post-container -->
                 <div class="post-container">
-                  <h2 class="page-heading">Search : Search Term</h2>
                   <?php
                         include "config.php";
-
-                        if(isset($_GET['aid'])){
-                            $auth_id = $_GET['aid'];
+                        if(isset($_GET['search'])){
+                            $search_term = $_GET['search'];
                         }
 
-                        $sql1 = "SELECT * FROM post JOIN user ON post.author = user.user_id
-                         WHERE post.author = {$auth_id}";
-                        $result1 = mysqli_query($con, $sql1) or die ("Query Failed");
-                        $row1 = mysqli_fetch_assoc($result1);
+                        
                         
                     ?>
-                    <h2 class="page-heading"><?php echo $row1['username']; ?></h2>
+                    <h2 class="page-heading">Search : <?php echo $search_term; ?></h2>
                     <?php
 
                         /* Calculation Offset Code */
@@ -35,7 +30,7 @@
                         category.category_name, user.username,post.category,post.post_img FROM post 
                         LEFT JOIN category ON post.category = category.category_id
                         LEFT JOIN user ON post.author = user.user_id
-                        WHERE post.author = {$auth_id}
+                        WHERE post.author = {$search_term}
                         ORDER BY post.post_id DESC LIMIT {$offset}, {$limit}";
 
                         $result = mysqli_query($con, $sql) or die ("Query Faild.");
@@ -87,7 +82,7 @@
 
                             echo "<ul class='pagination admin-pagination'>";
                             if($page > 1){
-                                echo '<li><a href="index.php?aid='.$auth_id.'&page='.($page - 1).'">Prev</a></li>';
+                                echo '<li><a href="index.php?aid='.$search_term.'&page='.($page - 1).'">Prev</a></li>';
                             }
                             
                             for($i = 1; $i <= $total_pages; $i++){
@@ -97,10 +92,10 @@
                                     $active = "";
                                 }
                                 
-                                echo '<li class="'.$active.'"><a href="index.php?aid='.$auth_id.'&page='. $i .'">'. $i .'</a></li>';
+                                echo '<li class="'.$active.'"><a href="index.php?aid='.$search_term.'&page='. $i .'">'. $i .'</a></li>';
                             }
                             if($total_pages > $page){
-                                echo '<li><a href="index.php?aid='.$auth_id.'&page='.($page + 1).'">Next</a></li>';
+                                echo '<li><a href="index.php?aid='.$search_term.'&page='.($page + 1).'">Next</a></li>';
                             }
                             
                             echo "</ul>";
