@@ -11,8 +11,6 @@
                             $search_term = $_GET['search'];
                         }
 
-                        
-                        
                     ?>
                     <h2 class="page-heading">Search : <?php echo $search_term; ?></h2>
                     <?php
@@ -73,6 +71,9 @@
 
                         // Show pagination
                     
+                        $sql1 = "SELECT * FROM post WHERE post.title lIKE '%{$search_term}%'";
+                        $result1 = mysqli_query($con, $sql1) or die ("Query Failed");
+                        $row1 = mysqli_fetch_assoc($result1);
 
                         if(mysqli_num_rows($result1) > 0){
 
