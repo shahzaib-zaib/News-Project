@@ -7,12 +7,12 @@
                 <div class="post-container">
                     <?php
 
-                        $sql1 = "SELECT * FROM user WHERE user_id = {$auth_id}";
+                        $sql1 = "SELECT * FROM category WHERE category_id = {$auth_id}";
                         $result1 = mysqli_query($con, $sql1) or die ("Query Failed");
                         $row1 = mysqli_fetch_assoc($result1);
 
                     ?>
-                    <h2 class="page-heading"><?php echo $row1['username']; ?></h2>
+                    <h2 class="page-heading"><?php echo $row1['category_name']; ?></h2>
                     <?php
 
                         include "config.php";
