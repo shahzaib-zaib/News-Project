@@ -12,17 +12,14 @@
                             $auth_id = $_GET['aid'];
                         }
 
-                        $sql1 = "SELECT * FROM post JOIN user
-                            ON post.author = user.user_id
+                        $sql1 = "SELECT * FROM post JOIN user ON post.author = user.user_id
                          WHERE post.author = {$auth_id}";
                         $result1 = mysqli_query($con, $sql1) or die ("Query Failed");
                         $row1 = mysqli_fetch_assoc($result1);
-                        print_r($row1);
+                        
                     ?>
                     <h2 class="page-heading"><?php echo $row1['username']; ?></h2>
                     <?php
-
-                        
 
                         /* Calculation Offset Code */
                         $limit = 3;
@@ -37,7 +34,7 @@
                         category.category_name, user.username,post.category,post.post_img FROM post 
                         LEFT JOIN category ON post.category = category.category_id
                         LEFT JOIN user ON post.author = user.user_id
-                        WHERE post.category = {$auth_id}
+                        WHERE post.author = {$auth_id}
                         ORDER BY post.post_id DESC LIMIT {$offset}, {$limit}";
 
                         $result = mysqli_query($con, $sql) or die ("Query Faild.");
@@ -59,7 +56,7 @@
                                         </span>
                                         <span>
                                             <i class="fa fa-user" aria-hidden="true"></i>
-                                            <a href='author.php'><?php echo $row['username']; ?></a>
+                                            <a href='author.php?aid=<?php echo $row['author']; ?>'><?php echo $row['username']; ?></a>
                                         </span>
                                         <span>
                                             <i class="fa fa-calendar" aria-hidden="true"></i>
@@ -78,16 +75,12 @@
                             echo "<h2>No Record Found.</h2>";
                         }
 
-                        ?>
-
-                        <?php
-
                         // Show pagination
                     
 
                         if(mysqli_num_rows($result1) > 0){
 
-                            $total_record = $row1['post'];
+                            $total_record = mysqli_num_rows($result1);
                             
                             $total_pages = ceil($total_record / $limit);
 
