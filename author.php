@@ -6,20 +6,23 @@
                 <!-- post-container -->
                 <div class="post-container">
                     <?php
-
-                        $sql1 = "SELECT * FROM category WHERE category_id = {$auth_id}";
-                        $result1 = mysqli_query($con, $sql1) or die ("Query Failed");
-                        $row1 = mysqli_fetch_assoc($result1);
-
-                    ?>
-                    <h2 class="page-heading"><?php echo $row1['category_name']; ?></h2>
-                    <?php
-
                         include "config.php";
 
                         if(isset($_GET['aid'])){
                             $auth_id = $_GET['aid'];
                         }
+
+                        $sql1 = "SELECT * FROM post JOIN user
+                            ON post.author = user.user_id
+                         WHERE post.author = {$auth_id}";
+                        $result1 = mysqli_query($con, $sql1) or die ("Query Failed");
+                        $row1 = mysqli_fetch_assoc($result1);
+                        print_r($row1);
+                    ?>
+                    <h2 class="page-heading"><?php echo $row1['username']; ?></h2>
+                    <?php
+
+                        
 
                         /* Calculation Offset Code */
                         $limit = 3;
