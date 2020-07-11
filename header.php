@@ -33,7 +33,7 @@
                             if($row['logo'] == ""){
                                 echo '<a href="index.php"><h1>'. $row['websitename'] .'</h1></a>';
                             }else{
-                                echo '<a href="index.php" id="logo"><img src="images/' . $row['logo'] . '"></a>';
+                                echo '<a href="index.php" id="logo"><img src="admin/images/' . $row['logo'] . '"></a>';
                             }
 
                         }

@@ -12,7 +12,11 @@
                         while($row = mysqli_fetch_assoc($result)) {
 
                 ?>
-                <span>© Copyright 2020 News | Powered by <a href="#">Zaib</a></span>
+                <span><?php echo $row['footerdesc']; ?></span>
+                <?php
+                        }
+                    }
+                ?>
             </div>
         </div>
     </div>
