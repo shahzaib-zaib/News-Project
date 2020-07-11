@@ -21,20 +21,14 @@
 
             /* Calculation Offset Code */
             $limit = 3;
-            if(isset($_GET['page'])){
-                $page = $_GET['page'];
-            }else{
-                $page = 1;
-            }
-            $offset = ($page - 1) * $limit;
+            
 
-            $sql = "SELECT post.post_id, post.title, post.description, post.post_date,post.author,
-            category.category_name, user.username,post.category,post.post_img FROM post 
+            $sql = "SELECT post.post_id, post.title, post.post_date,
+            category.category_name, post.category,post.post_img FROM post 
             LEFT JOIN category ON post.category = category.category_id
-            LEFT JOIN user ON post.author = user.user_id
-            ORDER BY post.post_id DESC LIMIT {$offset}, {$limit}";
+            ORDER BY post.post_id DESC LIMIT {$limit}";
 
-            $result = mysqli_query($con, $sql) or die ("Query Faild.");
+            $result = mysqli_query($con, $sql) or die ("Query Faild. : Recent Post");
             if(mysqli_num_rows($result) > 0){
                 while($row = mysqli_fetch_assoc($result)) {
         ?>
@@ -56,5 +50,9 @@
             </div>
         </div>
     </div>
+    <?
+        }
+    }
+    ?>
     <!-- /recent posts box -->
 </div>
