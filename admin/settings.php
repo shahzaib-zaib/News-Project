@@ -25,7 +25,7 @@
                       <div class="form-group">
                           <label for="logo">Website Logo</label>
                           <input type="file" name="logo" >
-                          <img src="image/<?php echo $row['logo']; ?>">
+                          <img src="images/<?php echo $row['logo']; ?>">
                           <input type="hidden" name="old_logo" value="<?php echo $row['logo']; ?>">
                       </div>
                       <div class="form-group">
