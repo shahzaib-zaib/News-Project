@@ -17,7 +17,7 @@
 
                 ?>
                   <!-- Form -->
-                  <form  action="" method="POST" enctype="multipart/form-data">
+                  <form  action="save-setting.php" method="POST" enctype="multipart/form-data">
                       <div class="form-group">
                           <label for="website_name">Website Name</label>
                           <input type="text" name="website_name" value="<?php echo $row['websitename']; ?>" class="form-control" autocomplete="off">
