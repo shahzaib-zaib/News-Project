@@ -6,25 +6,39 @@
                  <h1 class="admin-heading">Website Settings</h1>
              </div>
               <div class="col-md-offset-3 col-md-6">
+              <?php
+
+                    include "config.php";
+
+                    $sql = "SELECT * FROM settings ";
+                    $result = mysqli_query($con, $sql) or die ("Query Faild.");
+                    if(mysqli_num_rows($result) > 0){
+                        while($row = mysqli_fetch_assoc($result)) {
+
+                ?>
                   <!-- Form -->
                   <form  action="" method="POST" enctype="multipart/form-data">
                       <div class="form-group">
                           <label for="website_name">Website Name</label>
-                          <input type="text" name="website_name" class="form-control" autocomplete="off">
+                          <input type="text" name="website_name" value="<?php echo $row['websitename']; ?>" class="form-control" autocomplete="off">
                       </div>
                       <div class="form-group">
                           <label for="logo">Website Logo</label>
                           <input type="file" name="logo" >
-                          <img src="image/news.jpg">
-                          <input type="hidden" name="old_logo" value="">
+                          <img src="image/<?php echo $row['logo']; ?>">
+                          <input type="hidden" name="old_logo" value="<?php echo $row['logo']; ?>">
                       </div>
                       <div class="form-group">
                           <label for="footer_desc">Footer Description</label>
-                          <textarea name="footer_desc" class="form-control" rows="5"></textarea>
+                          <textarea name="footer_desc" class="form-control" rows="5"><?php echo $row['footerdesc']; ?></textarea>
                       </div>
                       <input type="submit" name="submit" class="btn btn-primary" value="Save" required />
                   </form>
                   <!--/Form -->
+                  <?php
+                        }
+                    }
+                  ?>
               </div>
           </div>
       </div>
