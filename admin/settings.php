@@ -6,7 +6,7 @@
                  <h1 class="admin-heading">Website Settings</h1>
              </div>
               <div class="col-md-offset-3 col-md-6">
-              <?php
+                <?php
 
                     include "config.php";
 
