@@ -19,7 +19,7 @@
         <!-- Bootstrap -->
         <link rel="stylesheet" href="../css/bootstrap.min.css" />
         <!-- Font Awesome Icon -->
-        <link rel="stylesheet" href="../css/font-awesome.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- Custom stlylesheet -->
         <link rel="stylesheet" href="../css/style.css">
     </head>
