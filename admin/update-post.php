@@ -64,6 +64,7 @@ if($_SESSION["user_role"] == '0'){
                         }
                 ?>
                 </select>
+                <input type="hidden" name="old_category" value="<?php echo $row['category']; ?>" id="">
             </div>
             <div class="form-group">
                 <label for="">Post image</label>

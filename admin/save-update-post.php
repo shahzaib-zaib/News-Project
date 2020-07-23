@@ -32,9 +32,17 @@
     }
 
     $sql = "UPDATE post SET title='{$_POST['post_title']}',description='{$_POST['postdesc']}',category={$_POST['category']},post_img='{$file_name}'
-    WHERE post_id={$_POST['post_id']}";
+    WHERE post_id={$_POST['post_id']};";
 
-    $result = mysqli_query($con,$sql);
+    if($_POST['old_category'] != $_POST['category']){
+        $sql .= "UPDATE category SET post = post - 1 WHERE category_id = {$_POST['old_category']};";
+        $sql .= "UPDATE category SET post = post + 1 WHERE category_id = {$_POST['category']};";
+
+    }
+
+    
+
+    $result = mysqli_multi_query($con,$sql);
 
     if($result){
         header("location: {$hostname}/admin/post.php");
