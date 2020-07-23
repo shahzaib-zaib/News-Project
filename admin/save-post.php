@@ -20,8 +20,11 @@
             $errors[] = "File size must be 2mb or lower.";
         }
         
+        $new_name = time() . "-" . basename($file_name);
+        $target = "upload/" . $new_name;
+        
         if(empty($errors) == true){
-            move_uploaded_file($file_tmp,"upload/".$file_name);
+            move_uploaded_file($file_tmp,$target);
         }else{
             print_r($errors);
             die();
@@ -37,7 +40,7 @@
 
 
     $sql = "INSERT INTO post(title, description, category, post_date, author, post_img)
-            VALUES('{$title}', '{$description}', {$category}, '{$date}', {$author}, '{$file_name}');";
+            VALUES('{$title}', '{$description}', {$category}, '{$date}', {$author}, '{$new_name}');";
 
     $sql .= "UPDATE category SET post = post + 1 WHERE category_id = {$category}";
 
