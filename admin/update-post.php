@@ -8,10 +8,9 @@ if($_SESSION["user_role"] == '0'){
 
     $row2 = mysqli_fetch_assoc($result2);
 
-    if($row2['author'] != $_SESSION["user_role"]){
+    if($row2['author'] != $_SESSION["user_id"]){
         header("Location: {$hostname}/admin/post.php");
     }
-    
 }
 ?>
 <div id="admin-content">
