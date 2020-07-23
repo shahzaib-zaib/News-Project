@@ -1,7 +1,17 @@
 <?php include "header.php"; 
 include "config.php";
 if($_SESSION["user_role"] == '0'){
-    header("Location: {$hostname}/admin/post.php");
+    include "config.php";
+    $post_id = $_GET['id'];
+    $sql2 = "SELECT author FROM post WHERE post_id = {$post_id}";
+    $result2 = mysqli_query($con, $sql2) or die ("Query Faild.");
+
+    $row2 = mysqli_fetch_assoc($result2);
+
+    if($row2['author'] != $_SESSION["user_role"]){
+        header("Location: {$hostname}/admin/post.php");
+    }
+    
 }
 ?>
 <div id="admin-content">
@@ -12,7 +22,6 @@ if($_SESSION["user_role"] == '0'){
     </div>
     <div class="col-md-offset-3 col-md-6">
     <?php
-
         include "config.php";
 
         $post_id = $_GET['id'];
